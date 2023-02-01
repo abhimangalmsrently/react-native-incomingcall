@@ -153,6 +153,12 @@ const requestPermissions = (permissions: any) => {
   }
 };
 
+const stickyImmersive = async () => {
+  if (!IsIOS) {
+    return await IncomingCall.stickyImmersive();
+  }
+};
+
 export {
   addEventListener,
   removeEventListener,
@@ -164,4 +170,5 @@ export {
   endCall,
   removeListener,
   requestPermissions,
+  stickyImmersive,
 };

@@ -64,8 +64,8 @@ const displayIncomingCall = (
   );
 };
 
-const endCall = (uuid: string): any => {
-  IncomingCall.endCall(uuid);
+const endCall = (): any => {
+  IncomingCall.endCall();
 };
 
 var invariant = require('fbjs/lib/invariant');

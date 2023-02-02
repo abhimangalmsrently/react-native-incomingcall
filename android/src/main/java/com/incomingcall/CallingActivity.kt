@@ -64,6 +64,10 @@ class CallingActivity : ReactActivity() {
     )
 
     setContentView(R.layout.call_fullscreen)
+    val callerName = bundle?.getString("callerName")
+    if(callerName != null){
+      name.text = callerName
+    }
 
     window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
       View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

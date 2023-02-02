@@ -36,7 +36,7 @@
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/zoro"
+                android:src="@drawable/avatar"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Roronoa Zoro"
+            android:text="Visitor"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:paddingBottom="5dp"

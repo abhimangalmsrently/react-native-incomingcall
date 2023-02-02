@@ -9,7 +9,7 @@ import android.os.*
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import okhttp3.internal.notify
+import kotlinx.android.synthetic.main.call_notification.*
 
 
 class CallService : Service() {
@@ -19,7 +19,6 @@ class CallService : Service() {
     return null
   }
 
-  @RequiresApi(Build.VERSION_CODES.S)
   override fun onDestroy() {
     super.onDestroy()
     removeNotification()
@@ -29,7 +28,7 @@ class CallService : Service() {
   }
 
 
-  @RequiresApi(Build.VERSION_CODES.S)
+  @RequiresApi(Build.VERSION_CODES.O)
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
     val bundle = intent?.extras
@@ -50,15 +49,21 @@ class CallService : Service() {
     val channelName = bundle?.getString("channelName") ?: Constants.INCOMING_CALL
     val channelId = bundle?.getString("channelId") ?: Constants.INCOMING_CALL
     val component = bundle?.getString("component")
+    val callerName = bundle?.getString("callerName")
     val accessToken = bundle?.getString("accessToken")
 
     val customView = RemoteViews(packageName, R.layout.call_notification)
+
+    if(callerName != null){
+      customView.setTextViewText(R.id.name, callerName)
+    }
 
     val notificationIntent = Intent(this, CallingActivity::class.java)
     val hungupIntent = Intent(this, HungUpBroadcast::class.java)
     var answerIntent = Intent(this, AnswerCallActivity::class.java)
 
     notificationIntent.putExtra("component", component)
+    notificationIntent.putExtra("callerName", callerName)
     notificationIntent.putExtra("accessToken", accessToken)
 
     answerIntent.putExtra("component", component)
@@ -134,17 +139,15 @@ class CallService : Service() {
     ringtone?.stop()
   }
 
-  @RequiresApi(Build.VERSION_CODES.S)
+  @RequiresApi(Build.VERSION_CODES.O)
   private fun startVibration() {
     val vibratePattern = longArrayOf(0, 1000, 1000)
 
-    vibrator = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-    vibrator!!.defaultVibrator.run {
-      vibrate(VibrationEffect.createWaveform(vibratePattern, 0))
-    }
+    vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    stopVibration()
+    vibrator!!.vibrate(VibrationEffect.createWaveform(vibratePattern, 0))
   }
 
-  @RequiresApi(Build.VERSION_CODES.S)
   private fun stopVibration() {
     vibrator?.cancel()
   }
@@ -152,6 +155,6 @@ class CallService : Service() {
   companion object {
     var handler: Handler? = null
     var runnable: Runnable? = null
-    var vibrator: VibratorManager? = null
+    var vibrator: Vibrator? = null
   }
 }

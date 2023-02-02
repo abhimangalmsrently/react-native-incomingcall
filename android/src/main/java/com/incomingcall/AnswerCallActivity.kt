@@ -33,8 +33,8 @@ class AnswerCallActivity : ReactActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(null)
 
-    super.onCreate(savedInstanceState)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
       setShowWhenLocked(true)
       setTurnScreenOn(true)
@@ -121,6 +121,10 @@ class AnswerCallActivity : ReactActivity() {
   }
 
   private fun enterPipMode(width: Int, height: Int) {
+    if(this.isFinishing || this.isDestroyed || !active){
+      return
+    }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       val ratWidth = if (width > 0) width else 380
       val ratHeight = if (height > 0) height else 214

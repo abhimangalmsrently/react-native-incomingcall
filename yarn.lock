@@ -7520,6 +7520,11 @@ react-native-gradle-plugin@^0.70.3:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz#cbcf0619cbfbddaa9128701aa2d7b4145f9c4fc8"
   integrity sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==
 
+react-native-voip-call@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-voip-call/-/react-native-voip-call-1.1.1.tgz#0d447c68660507204fe22e2908e7fbdaa7210d8c"
+  integrity sha512-EQXjynWhge6G0awnYZ7SkUnBUTjq84vYNsZZ629/Poa9nSIZ2SGtCvNjkWwFPPcrFlqaC75x0z4B6+0JsQ/P7Q==
+
 react-native@0.70.6:
   version "0.70.6"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.70.6.tgz#d692f8b51baffc28e1a8bc5190cdb779de937aa8"

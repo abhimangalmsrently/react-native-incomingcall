@@ -147,5 +147,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-voip-call": "^1.1.1"
   }
 }
